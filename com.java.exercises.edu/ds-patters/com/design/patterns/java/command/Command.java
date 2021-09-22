@@ -2,7 +2,7 @@ package com.design.patterns.java.command;
 
 public class Command {
 
-	enum Action
+	public enum Action
 	{
 		DEPOSIT, WITHDRAW
 	}

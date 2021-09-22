@@ -1,9 +1,13 @@
-package com.design.patterns.java.command;
-import org.junit.Test;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertEquals;
+package com.design.patterns.java.command.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
+import com.design.patterns.java.command.Account;
+import com.design.patterns.java.command.Command;
 public class CommandTest {
 
 	@Test

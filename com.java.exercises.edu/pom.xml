@@ -6,7 +6,7 @@
   <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
+		<java.version>15</java.version>
 		<spring-kafka.version>2.1.8.RELEASE</spring-kafka.version>
 		<avro.version>1.8.2</avro.version>
 		<confluent.version>5.0.0</confluent.version>
@@ -50,21 +50,12 @@
 			<artifactId>avro</artifactId>
 			<version>${avro.version}</version>
 		</dependency>
-<dependency>
-    <groupId>io.confluent</groupId>
-    <artifactId>kafka-avro-serializer</artifactId>
-    <version>4.0.0</version>
-</dependency>
+		<dependency>
+			<groupId>io.confluent</groupId>
+			<artifactId>kafka-avro-serializer</artifactId>
+			<version>4.0.0</version>
+		</dependency>
         
-
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
 
         <!--for logging purposes-->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
@@ -80,6 +71,15 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>1.7.25</version>
         </dependency>
+        
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-api</artifactId>
+		    <version>5.1.0-M1</version>
+		    <scope>test</scope>
+		</dependency>
+
 
     </dependencies>
     
@@ -122,23 +122,6 @@
                     </execution>
                 </executions>
             </plugin>
-<!--             <plugin> -->
-<!-- 				<groupId>org.apache.avro</groupId> -->
-<!-- 				<artifactId>avro-maven-plugin</artifactId> -->
-<!-- 				<version>${avro.version}</version> -->
-<!-- 				<executions> -->
-<!-- 					<execution> -->
-<!-- 						<phase>generate-sources</phase> -->
-<!-- 						<goals> -->
-<!-- 							<goal>schema</goal> -->
-<!-- 						</goals> -->
-<!-- 						<configuration> -->
-<!-- 							<sourceDirectory>/Users/guillermoMac/eclipse-workspace/2020eclipse/w1/udemy.kafka.streams/avro</sourceDirectory> -->
-<!-- 							<outputDirectory>/Users/guillermoMac/eclipse-workspace/2020eclipse/w1/udemy.kafka.streams/target/generated/avro</outputDirectory> -->
-<!-- 						</configuration> -->
-<!-- 					</execution> -->
-<!-- 				</executions> -->
-<!-- 			</plugin> -->
         </plugins>
-    </build>
+	</build>
 </project>

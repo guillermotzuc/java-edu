@@ -1,6 +1,7 @@
 package com.github.simplesteph.udemy.kafka.streams;
 
-import static org.junit.Assert.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Properties;
 
@@ -14,9 +15,9 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.test.ConsumerRecordFactory;
 import org.apache.kafka.streams.test.OutputVerifier;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import udemy.kafka.streams.WordCountApp;
 
@@ -30,7 +31,7 @@ public class WordCountAppTest {
              new ConsumerRecordFactory<>(stringSerializer, stringSerializer);
 
 
-    @Before
+    @BeforeEach
     public void setUpTopologyTestDriver(){
         Properties config = new Properties();
         config.put(StreamsConfig.APPLICATION_ID_CONFIG, "test");
@@ -43,7 +44,7 @@ public class WordCountAppTest {
         testDriver = new TopologyTestDriver(topology, config);
     }
 
-    @After
+    @AfterEach
     public void closeTestDriver(){
         testDriver.close();
     }
