@@ -1,0 +1,15 @@
+{
+     "type": "record",
+     "namespace": "com.example",
+     "name": "Customer",
+     "doc": "",
+     "fields": [
+       { "name": "firstName", "type": "string", "doc": "" },
+       { "name": "lastName", "type": "string", "doc": "" },
+       { "name": "age",    "type": "int", "doc":""  },
+       { "name": "height", "type": "float", "doc":""  },
+       { "name": "weight", "type": "float", "doc":""  },
+       { "name": "email", "default" : true ,"type": "boolean", "doc":""  },
+       { "name": "customer_emails", "type": "array", "doc":"", "default" : []  }
+     ]  
+}

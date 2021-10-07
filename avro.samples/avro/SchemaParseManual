@@ -1,0 +1,11 @@
+        Schema schema = SchemaBuilder
+                .record("testingrecord")
+                .namespace("org.apache.avro.testing")
+                .fields()
+                .name(BaseConstants.NAME_COL).type(Schema.Type.STRING.getName()).withDefault(true)
+                .endRecord();
+
+        GenericRecordBuilder builder = new GenericRecordBuilder(schema);
+        builder.set(BaseConstants.NAME_COL, name);
+
+        return builder.build();
