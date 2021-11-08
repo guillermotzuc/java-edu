@@ -7,8 +7,6 @@ import org.apache.beam.sdk.extensions.sql.SqlTransform;
 import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.schemas.Schema;
 import org.apache.beam.sdk.transforms.DoFn;
-import org.apache.beam.sdk.transforms.DoFn.ProcessContext;
-import org.apache.beam.sdk.transforms.DoFn.ProcessElement;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
 import org.apache.beam.sdk.values.Row;
@@ -21,7 +19,7 @@ public class SQLExample {
 			.addStringField("userId")
 			.addStringField("orderId")
 			.addStringField("productId")
-			.addStringField("Amount")
+			.addDoubleField("Amount")
 			.build();
 
 	public static class StringToRow extends DoFn<String, Row> {
@@ -61,7 +59,7 @@ public class SQLExample {
 
 		//Steap 1: Read csv file
 		PCollection<String> fileInput = 
-				pipeline.apply(TextIO.read().from("./src/main/resources/user_order.csv"));
+				pipeline.apply(TextIO.read().from("./src/main/resources/user_order_1.csv"));
 
 		//Steap 2: convert PCollection<String> to PCollection<Rows>
 		PCollection<Row> rows = 
@@ -69,8 +67,7 @@ public class SQLExample {
 				.setRowSchema(schema);
 
 		//Appy sql tranformation
-		PCollection<Row> SQLRows = rows.apply(SqlTransform.query("select * from PCOLLECTION "))
-				.setRowSchema(schema);
+		PCollection<Row> SQLRows = rows.apply(SqlTransform.query("select * from PCOLLECTION "));
 
 		SQLRows.apply(ParDo.of(new RowToString()))
 				.apply(TextIO.write().to("./src/main/resources/sql_out.csv")
