@@ -10,8 +10,6 @@ import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.StringDeserializer;
-import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.StreamsConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,9 +29,10 @@ import io.confluent.developer.avro.Hobbit;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-//@EnableKafka //ADD KAFKA STREAMS 
-//@EnableKafkaStreams  //ADD KAFKA STREAMS 
+@EnableKafka //ADD KAFKA STREAMS 
+@EnableKafkaStreams  //ADD KAFKA STREAMS 
 @Configuration
 public class KafkaConfiguration {
 	
@@ -77,18 +76,19 @@ public class KafkaConfiguration {
 		return new KafkaAdmin(Map.of(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092"));
 	}
 	
-//	@Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
-//	public KafkaStreamsConfiguration kStreamsConfig() {
-//		
-//		return new KafkaStreamsConfiguration(
-//				Map.of(
-//					StreamsConfig.APPLICATION_ID_CONFIG, "testStreams",
-//					StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
-//					StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName(),
-//					StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName()
-//						));
-//				
-//	}
+	@Bean(name = KafkaStreamsDefaultConfiguration.DEFAULT_STREAMS_CONFIG_BEAN_NAME)
+	public KafkaStreamsConfiguration kStreamsConfig() {
+		
+		return new KafkaStreamsConfiguration(
+				Map.of(
+					StreamsConfig.APPLICATION_ID_CONFIG, "testStreams",
+					StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092",
+					StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Integer().getClass().getName(),
+					AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, SCHEMA_REGISTRY_URL,
+					StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class
+						));
+				
+	}
 	
 	@Bean
 	public NewTopic topic1() {
