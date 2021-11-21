@@ -1,0 +1,4 @@
+
+https://developer.confluent.io/learn-kafka/spring/cloud-schema-registry/
+https://avro.apache.org/docs/1.10.2/gettingstartedjava.html
+http://localhost:8080/count/{word}
