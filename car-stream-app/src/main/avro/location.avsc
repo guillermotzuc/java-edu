@@ -1,0 +1,8 @@
+{
+"fields": [
+      { "name" : "Location" , "type" : "string" }
+],
+"name": "Location",
+"namespace": "io.confluent.developer.avro",
+"type": "record"
+}

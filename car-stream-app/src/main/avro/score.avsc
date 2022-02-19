@@ -1,0 +1,10 @@
+{
+"fields": [
+      { "name" : "Username" , "type" : "string" },
+      { "name" : "Location" , "type" : "string" },
+      { "name" : "Score" , "type" : "int" }
+],
+"name": "Score",
+"namespace": "io.confluent.developer.avro",
+"type": "record"
+}
