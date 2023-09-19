@@ -1,15 +1,28 @@
-package project.excercises.code;
+package project.excercises.code.binarysearch;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 public class BinarySearch {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		int array[] = {1,2,3,4,5,6,7,8 };
+		/* Write a function, that gets the index of a 
+		 * number if exist or return -1 if its not
+		 * */
+		int array[] = IntStream.range(1, 5000)
+					.boxed().mapToInt(n -> n * 100)
+					.sorted()
+					.toArray();
+		
 		int end = array.length -1;
 		int start = 0;
-		int target = 7;
+		int target = 700;
 		System.out.println(binarySearch(array, start, end, target));
+		System.out.println(Arrays.binarySearch(array, 200));
+		
+		
 	}
 	
 	public static boolean binarySearch(int[] array, int start, int end, int target) {

@@ -7,10 +7,12 @@ import java.util.Map;
 
 import org.apache.kafka.common.serialization.IntegerDeserializer;
 import org.apache.kafka.common.serialization.Serde;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.Topology;
 import org.springframework.kafka.config.KafkaStreamsInfrastructureCustomizer;
 import org.springframework.stereotype.Component;
+
 
 import io.confluent.developer.avro.Hobbit;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
@@ -76,11 +78,13 @@ public class CustomInfrastructureCustomizer implements KafkaStreamsInfrastructur
 	@Override
 	public void configureTopology(Topology topology) {
 		
-		topology
-			.addSource("source", new IntegerDeserializer(), this.hobbitSerde().deserializer(), "hobbit")
-			.addProcessor("hobbitProcessor", HobbitProcessor::new, "source")
-			;
+//		topology
+//			.addSource("source", new IntegerDeserializer(), this.hobbitSerde().deserializer(), "hobbit")
+//			.addProcessor("hobbitProcessor", HobbitProcessor::new, "source")
+//			.addSink("IgnitionToEdgeData", KafkaConfig.OUTPUT_TOPIC, new StringSerializer(), VALUE_JSON_SE, "hobbitProcessor")
+//			;
 
+		
 //		topology
 //		.addSource("<name>", new StringDeserializer(),  new ByteArrayDeserializer(), <name>)
 //		.addSource("<name>", new StringDeserializer(),  <name>, KafkaConfig.<name>)
